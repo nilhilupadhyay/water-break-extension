@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      width: 280px;
+      background: linear-gradient(145deg, #0a1628, #0d2240);
+      color: #e0f0ff;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      padding: 20px;
+      border-radius: 0;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .logo {
+      font-size: 28px;
+      animation: drop 2s ease-in-out infinite;
+    }
+
+    @keyframes drop {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-4px); }
+    }
+
+    .brand {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      color: #7dd3fc;
+    }
+
+    .brand-sub {
+      font-size: 11px;
+      color: rgba(150, 200, 255, 0.5);
+      letter-spacing: 0.3px;
+    }
+
+    /* Toggle */
+    .toggle-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: 12px 14px;
+      margin-bottom: 14px;
+    }
+
+    .toggle-label { font-size: 13px; color: rgba(200,230,255,0.8); }
+
+    .toggle {
+      position: relative;
+      width: 42px;
+      height: 24px;
+      cursor: pointer;
+    }
+
+    .toggle input { display: none; }
+
+    .toggle-track {
+      position: absolute;
+      inset: 0;
+      background: rgba(255,255,255,0.12);
+      border-radius: 99px;
+      transition: background 0.3s;
+    }
+
+    .toggle input:checked ~ .toggle-track {
+      background: linear-gradient(90deg, #2196f3, #03a9f4);
+    }
+
+    .toggle-thumb {
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 18px;
+      height: 18px;
+      background: #fff;
+      border-radius: 50%;
+      transition: transform 0.3s;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+    }
+
+    .toggle input:checked ~ .toggle-track ~ .toggle-thumb,
+    .toggle input:checked + .toggle-track + .toggle-thumb {
+      transform: translateX(18px);
+    }
+
+    /* Next alarm */
+    .next-alarm {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: 12px 14px;
+      margin-bottom: 14px;
+    }
+
+    .next-alarm-label {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: rgba(150,200,255,0.5);
+      margin-bottom: 4px;
+    }
+
+    .next-alarm-time {
+      font-size: 20px;
+      font-weight: 700;
+      color: #7dd3fc;
+      letter-spacing: -0.5px;
+    }
+
+    /* Interval picker */
+    .interval-row {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: 12px 14px;
+      margin-bottom: 14px;
+    }
+
+    .interval-label {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: rgba(150,200,255,0.5);
+      margin-bottom: 8px;
+    }
+
+    .interval-btns {
+      display: flex;
+      gap: 6px;
+    }
+
+    .interval-btn {
+      flex: 1;
+      padding: 7px 4px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px;
+      color: rgba(200,230,255,0.7);
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .interval-btn:hover {
+      background: rgba(255,255,255,0.15);
+      color: #fff;
+    }
+
+    .interval-btn.active {
+      background: rgba(33, 150, 243, 0.3);
+      border-color: rgba(33,150,243,0.6);
+      color: #7dd3fc;
+      font-weight: 600;
+    }
+
+    /* Test button */
+    .test-btn {
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(135deg, rgba(33,150,243,0.2), rgba(3,169,244,0.2));
+      border: 1px solid rgba(33,150,243,0.4);
+      border-radius: 12px;
+      color: #7dd3fc;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      letter-spacing: 0.3px;
+    }
+
+    .test-btn:hover {
+      background: linear-gradient(135deg, rgba(33,150,243,0.35), rgba(3,169,244,0.35));
+      border-color: rgba(33,150,243,0.7);
+      transform: scale(1.02);
+    }
+
+    .test-btn:active { transform: scale(0.98); }
+
+    .status {
+      text-align: center;
+      font-size: 11px;
+      color: rgba(150,200,255,0.5);
+      margin-top: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <div class="logo">💧</div>
+    <div>
+      <div class="brand">Water Break</div>
+      <div class="brand-sub">Stay hydrated. Stay sharp.</div>
+    </div>
+  </div>
+
+  <div class="toggle-row">
+    <div class="toggle-label">Reminders enabled</div>
+    <label class="toggle">
+      <input type="checkbox" id="enableToggle" checked>
+      <div class="toggle-track"></div>
+      <div class="toggle-thumb"></div>
+    </label>
+  </div>
+
+  <div class="next-alarm">
+    <div class="next-alarm-label">Next reminder in</div>
+    <div class="next-alarm-time" id="nextAlarm">--:--</div>
+  </div>
+
+  <div class="interval-row">
+    <div class="interval-label">Remind every</div>
+    <div class="interval-btns">
+      <button class="interval-btn" data-mins="10">10 min</button>
+      <button class="interval-btn active" data-mins="20">20 min</button>
+      <button class="interval-btn" data-mins="30">30 min</button>
+      <button class="interval-btn" data-mins="45">45 min</button>
+    </div>
+  </div>
+
+  <button class="test-btn" id="testBtn">▶ Preview Reminder</button>
+
+  <div class="status" id="status">Protecting your hydration 💧</div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
