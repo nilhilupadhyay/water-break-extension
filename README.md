@@ -24,13 +24,13 @@
 
 ```
 water-break-extension/
-├── manifest.json        # Chrome extension config (Manifest V3)
-├── background.js        # Service worker — manages alarms & tab injection
-├── overlay.js           # Injected into active tab — renders the popup UI
-├── overlay.css          # Styles & animations for the overlay
-├── popup.html           # Extension toolbar popup UI
-├── popup.js             # Popup interaction logic
-├── water-break.mp4      # Reference video asset
+├── manifest.json        
+├── background.js        
+├── overlay.js           
+├── overlay.css          
+├── popup.html          
+├── popup.js             
+├── water-break.mp4      
 ├── icons/
 │   ├── icon16.png
 │   ├── icon48.png
@@ -46,94 +46,16 @@ water-break-extension/
 
 ### Step 1 — Clone the repo
 
-```bash
-git clone https://github.com/YOUR_USERNAME/water-break-extension.git
-cd water-break-extension
-```
-
 ### Step 2 — Load in Chrome
 
-1. Open Chrome and go to: `chrome://extensions/`
-2. Toggle **Developer mode** ON (top-right corner)
+1. Open Chrome and go to: 
+2. Toggle **Developer mode** 
 3. Click **Load unpacked**
 4. Select the `water-break-extension/` folder
 5. The extension appears in your toolbar — pin it for easy access!
 
 ---
 
-## 🌐 Publishing to Chrome Web Store
-
-Follow these steps to make your extension publicly available.
-
-### Step 1 — Create a ZIP
-
-```bash
-# From inside the project folder
-zip -r water-break-extension.zip . --exclude "*.git*" --exclude "*.DS_Store"
-```
-
-Or on Windows (PowerShell):
-```powershell
-Compress-Archive -Path * -DestinationPath water-break-extension.zip
-```
-
-### Step 2 — Register as a Chrome Developer
-
-1. Go to [Chrome Web Store Developer Dashboard](https://chrome.google.com/webstore/devconsole/)
-2. Sign in with your Google account
-3. Pay the **one-time $5 registration fee**
-
-### Step 3 — Submit your extension
-
-1. Click **Add new item**
-2. Upload your `water-break-extension.zip`
-3. Fill in the store listing:
-   - **Name**: Water Break
-   - **Short description**: A minimalist animated reminder to drink water every 20 minutes.
-   - **Category**: Productivity
-   - **Screenshots**: Take a screenshot of the overlay in action (1280×800 or 640×400)
-4. Click **Submit for review**
-
-> ⏳ Review typically takes 1–3 business days.
-
----
-
-## 🔧 Git Setup & Push
-
-### First time setup
-
-```bash
-# Initialize git (if not already)
-git init
-
-# Add all files
-git add .
-
-# First commit
-git commit -m "feat: initial release of Water Break extension"
-
-# Connect to your GitHub repo
-git remote add origin https://github.com/YOUR_USERNAME/water-break-extension.git
-
-# Push
-git push -u origin main
-```
-
-### Subsequent updates
-
-```bash
-git add .
-git commit -m "fix: improved animation timing"
-git push
-```
-
-### Recommended `.gitignore`
-
-```
-.DS_Store
-*.zip
-node_modules/
-```
 
 ---
 
@@ -198,12 +120,6 @@ fill="#a8d8ea"
 /* Water/glass color */
 fill="rgba(140,210,255,0.5)"
 ```
-
----
-
-## 📄 License
-
-MIT License — free to use, modify, and distribute.
 
 ---
 
